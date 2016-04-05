@@ -25,4 +25,6 @@ if [ ! "$proxy_url" ];then
   echo "must set proxy"
 else
   set_proxy
+  # output the proxy env after set.
+  env|grep -i proxy
 fi
