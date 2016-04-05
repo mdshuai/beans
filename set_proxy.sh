@@ -3,11 +3,11 @@
 # "source set_proxy.sh example.proxy.com:3200" or ". set_proxy.sh example.proxy.com:3200"
 
 function set_proxy(){
-  typeset -u name
+  typeset -u NAME
   for name in http ftp https all
   do
     NAME=$name
-    if [ "$name" = "all" ]
+    if [ "$name" == "all" ]
     then
       export "$name"_proxy=socks://"$proxy_url"/
       export "$NAME"_PROXY=socks://"$proxy_url"/
