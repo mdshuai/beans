@@ -1,6 +1,7 @@
 #!/bin/bash
-# usage `source set_proxy.sh + your proxy`
-# example: source set_proxy.sh example.proxy.com:3200
+# run this script in current shell example: 
+# "source set_proxy.sh example.proxy.com:3200" or ". set_proxy.sh example.proxy.com:3200"
+
 proxy_url=$1
 echo $proxy_url
 typeset -u NAME
