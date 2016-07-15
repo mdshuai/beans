@@ -16,5 +16,6 @@ kube-master.example.com
 kube-node-01.example.com
 
 EOF
-
+#if you want use other k8s version, you can change 'kube_version'
+# https://github.com/kubernetes/contrib/blob/master/ansible/roles/kubernetes/defaults/main.yml#L2
 ./setup.sh
