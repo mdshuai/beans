@@ -30,7 +30,7 @@ cd $GOPATH/src/k8s.io/heapster/grafana
 #deploy monitor
 cd $GOPATH/src/k8s.io/heapster
 sed -i -e 's/kubernetes\/heapster_influxdb:v0.5/kubernetes\/heapster_influxdb:canary/g' influxdb-grafana-controller.yaml
-sed -i -e 's/gcr.io/google_containers\/heapster_grafana:v2.6.0-2/gcr.io/google_containers\/heapster_grafana:canary/g' influxdb-grafana-controller.yaml
+sed -i -e 's/gcr.io\/google_containers\/heapster_grafana:v2.6.0-2/gcr.io\/google_containers\/heapster_grafana:canary/g' influxdb-grafana-controller.yaml
 kubectl create -f deploy/kube-config/influxdb/
 
 #check cluster-monitoring working
