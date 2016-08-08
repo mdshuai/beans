@@ -21,7 +21,7 @@ go get -d k8s.io/heapster
 cd $GOPATH/src/k8s.io/heapster
 make
 
-cd $GOPATH/src/k8s.io/heapster/ deploy/docker
+cd $GOPATH/src/k8s.io/heapster/deploy/docker
 ./build.sh
 
 cd $GOPATH/src/k8s.io/heapster/influxdb
