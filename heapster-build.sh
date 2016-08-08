@@ -28,7 +28,7 @@ cd $GOPATH/src/k8s.io/heapster/influxdb
 ./build.sh
 
 cd $GOPATH/src/k8s.io/heapster/grafana
-./build.sh
+make
 
 #deploy monitor
 cd $GOPATH/src/k8s.io/heapster
