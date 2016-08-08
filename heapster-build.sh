@@ -31,10 +31,12 @@ cd $GOPATH/src/k8s.io/heapster/grafana
 make
 
 #deploy monitor
-cd $GOPATH/src/k8s.io/heapster
+cd $GOPATH/src/k8s.io/heapster/deploy/kube-config/influxdb/
+sed -i -e 's/kubernetes\/heapster:canary/docker.io\/deshuai\/heapster:canary/g' heapster-controller.yaml
 sed -i -e 's/kubernetes\/heapster_influxdb:v0.5/kubernetes\/heapster_influxdb:canary/g' influxdb-grafana-controller.yaml
 sed -i -e 's/gcr.io\/google_containers\/heapster_grafana:v2.6.0-2/gcr.io\/google_containers\/heapster_grafana:canary/g' influxdb-grafana-controller.yaml
-kubectl create -f deploy/kube-config/influxdb/
+kubectl create -f ./
+cd -
 
 #check cluster-monitoring working
 sleep 10
