@@ -30,6 +30,11 @@ cd $GOPATH/src/k8s.io/heapster/influxdb
 cd $GOPATH/src/k8s.io/heapster/grafana
 make
 
+#After finish build image, re-tag
+docker tag heapster:canary docker.io/deshuai/heapster:canary
+docker tag heapster_influxdb:canary docker.io/deshuai/heapster_influxdb:canary 
+docker tag kubernetes/heapster_grafana:v2.6.0-2 docker.io/deshuai/heapster_grafana:v2.6.0-2
+
 #deploy monitor
 cd $GOPATH/src/k8s.io/heapster/deploy/kube-config/influxdb/
 sed -i -e 's/kubernetes\/heapster:canary/docker.io\/deshuai\/heapster:canary/g' heapster-controller.yaml
