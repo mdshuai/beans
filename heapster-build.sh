@@ -24,8 +24,8 @@ docker tag kubernetes/heapster_grafana:v2.6.0-2 docker.io/deshuai/heapster_grafa
 #deploy monitor
 cd $GOPATH/src/k8s.io/heapster/deploy/kube-config/influxdb/
 sed -i -e 's/kubernetes\/heapster:canary/docker.io\/deshuai\/heapster:canary/g' heapster-controller.yaml
-sed -i -e 's/kubernetes\/heapster_influxdb:v0.5/kubernetes\/heapster_influxdb:canary/g' influxdb-grafana-controller.yaml
-sed -i -e 's/gcr.io\/google_containers\/heapster_grafana:v2.6.0-2/gcr.io\/google_containers\/heapster_grafana:canary/g' influxdb-grafana-controller.yaml
+sed -i -e 's/kubernetes\/heapster_influxdb:v0.5/docker.io\/deshuai\/heapster_influxdb:canary/g' influxdb-grafana-controller.yaml
+sed -i -e 's/gcr.io\/google_containers\/heapster_grafana:v2.6.0-2/docker.io\/deshuai\/heapster_grafana:v2.6.0-2/g' influxdb-grafana-controller.yaml
 kubectl create -f ./
 cd -
 
