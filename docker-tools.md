@@ -8,3 +8,7 @@ docker rmi $(docker images -q)
 docker images --filter "dangling=true"
 docker images -q
 ```
+#####3. Get inodes summay
+```
+df -i|awk 'NR>1 {print $3}'|awk '{sum+=$1} END {print "sum =", sum}'
+```
