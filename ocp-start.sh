@@ -2,7 +2,7 @@
 # start openshift all-in-one env
 # supose openshift command already in the path
 # usage:
-# $ sh start-openshift.sh $master_public_ip
+# $ . start-openshift.sh $master_public_ip
 
 public_master=$1
 echo $public_master
