@@ -2,17 +2,17 @@
 
 ##v2 api
 ```
-http://<server>/api/v2.0/version
-http://<server>/api/v2.0/machine
-http://<server>/api/v2.0/stats/<container identity>
-http://<server>/api/v2.0/summary/<container identity>
+http://<server>:8080/api/v2.0/version
+http://<server>:8080/api/v2.0/machine
+http://<server>:8080/api/v2.0/stats/<container identity>
+http://<server>:8080/api/v2.0/summary/<container identity>
 ...
 v2 supported request types: "appmetrics,attributes,events,machine,ps,spec,stats,storage,summary,version"
 
 //example
-http://<server>/api/v2.0/stats?type=docker&recursive=true    (#find all containers.)
-http://<server>/api/v2.0/stats/<container-id>?type=docker&count=2
-http://<server>/api/v2.0/summary/<container-id>?type=docker
+http://<server>:8080/api/v2.0/stats?type=docker&recursive=true    (#find all containers.)
+http://<server>:8080/api/v2.0/stats/<container-id>?type=docker&count=2
+http://<server>:8080/api/v2.0/summary/<container-id>?type=docker
 
 note:
 type=name in the v2 docs not works.
