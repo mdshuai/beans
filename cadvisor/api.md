@@ -2,6 +2,9 @@
 
 ##v2 api
 ```
+http://<server>:8080/api/
+Supported API versions: v1.0,v1.1,v1.2,v1.3,v2.0,v2.1
+
 http://<server>:8080/api/v2.0/version
 http://<server>:8080/api/v2.0/machine
 http://<server>:8080/api/v2.0/stats/<container identity>
