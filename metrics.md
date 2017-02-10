@@ -50,7 +50,7 @@ token=rvSA594JdSeRx0ZCMMonqCQIg7J-Bc1DhGE9E70Elb0
   ]
  }
  //Get selector pods metrics
- [root@qe-dma1-master-1 ~]# curl -k -H "Authorization: Bearer $token" -X GET https://qe-dma1-master-1.0210-tte.qe.rhcloud.com:8443/api/v1/proxy/namespaces/openshift-infra/services/https:heapster:/apis/metrics/v1alpha1/namespaces/dma1/po/?labelSelector="name=hello-pod"
+$ curl -k -H "Authorization: Bearer $token" -X GET https://qe-dma1-master-1.0210-tte.qe.rhcloud.com:8443/api/v1/proxy/namespaces/openshift-infra/services/https:heapster:/apis/metrics/v1alpha1/namespaces/dma1/pods/?labelSelector="name=hello-pod"
 {
   "metadata": {},
   "items": [
