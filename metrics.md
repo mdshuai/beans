@@ -84,8 +84,10 @@ $ curl -k -H "Authorization: Bearer $token" -X GET https://qe-dma1-master-1.0210
 oadm policy add-cluster-role-to-user cluster-admin $user
 token=`oc whoami -t`
 token=rvSA594JdSeRx0ZCMMonqCQIg7J-Bc1DhGE9E70Elb0
+//Get pod list
+curl -k -H "Authorization: Bearer $token" -X GET https://qe-dma1-master-1.0210-tte.qe.rhcloud.com:8443/api/v1/proxy/namespaces/openshift-infra/services/https:heapster:/api/v1/model/namespaces/dma1/pods/
 //Get metrics list
 curl -k -H "Authorization: Bearer $token" -X GET https://qe-dma1-master-1.0210-tte.qe.rhcloud.com:8443/api/v1/proxy/namespaces/openshift-infra/services/https:heapster:/api/v1/model/namespaces/dma1/pods/resource-consumer-1-3b8dw/metrics/
 //Get cpu metrics
-curl -k -H "Authorization: Bearer $token" -X GET https://qe-dma1-master-1.0210-tte.qe.rhcloud.com:8443/api/v1/proxy/namespaces/openshift-infra/services/https:heapster:/api/v1/model/namespaces/dma1/pods/resouronsumer-1-3b8dw/metrics/cpu/usage
+curl -k -H "Authorization: Bearer $token" -X GET  https://qe-dma1-master-1.0210-tte.qe.rhcloud.com:8443/api/v1/proxy/namespaces/openshift-infra/services/https:heapster:/api/v1/model/namespaces/dma1/pods/resource-consumer-1-3b8dw/metrics/cpu/usage_rate
 ```
