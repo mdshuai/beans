@@ -91,3 +91,8 @@ curl -k -H "Authorization: Bearer $token" -X GET https://qe-dma1-master-1.0210-t
 //Get cpu metrics
 curl -k -H "Authorization: Bearer $token" -X GET  https://qe-dma1-master-1.0210-tte.qe.rhcloud.com:8443/api/v1/proxy/namespaces/openshift-infra/services/https:heapster:/api/v1/model/namespaces/dma1/pods/resource-consumer-1-3b8dw/metrics/cpu/usage_rate
 ```
+
+#### Get node stats from apiserver api
+```
+oc get --raw api/v1/nodes/<nodename>/proxy/stats/summary
+```
