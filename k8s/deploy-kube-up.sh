@@ -15,8 +15,7 @@ make quick-release
 
 #deploy k8s cluster on gce
 export KUBERNETES_PROVIDER=gce
-export INSTANCE_PREFIX=qe-dma
-export NODE_INSTANCE_PREFIX=qe-dma
+export KUBE_GCE_INSTANCE_PREFIX=dma-k8s
 export NUM_NODES=2
 ./cluster/kube-up.sh
 
