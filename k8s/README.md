@@ -16,9 +16,10 @@ Container-Optimized OS does not include a package manager; as such, you'll be un
 
 ***restart kubelet svc:*** service kubelet restart
 
-***disable kubelet autorestart****
+***disable kubelet/docker autorestart****
 ```
-$ sed -i 's/autorestart\=true/autorestart\=false/g' /etc/supervisor/conf.d/kubelet.conf
-$ supervisorctl reload
+# sed -i 's/autorestart\=true/autorestart\=false/g' /etc/supervisor/conf.d/kubelet.conf
+# sed -i 's/autorestart\=true/autorestart\=false/g' /etc/supervisor/conf.d/docker.conf
+# supervisorctl reload
 ```
 cat /etc/os-release
