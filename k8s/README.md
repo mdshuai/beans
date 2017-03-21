@@ -4,7 +4,7 @@
 
 Container-Optimized OS does not include a package manager; as such, you'll be unable install software packages on an instance.
 
-***config file*** ```/etc/kubernetes/manifests/kube-controller-manager.manifest```
+***config file*** ```/etc/kubernetes/manifests/kube-controller-manager.manifest``` change this file will cause restart svc
 
 ***log file*** ```/var/log/kube-controller-manager.log```
 
