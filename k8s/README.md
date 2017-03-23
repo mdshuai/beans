@@ -1,5 +1,5 @@
 ## Setup env by kube-up on gce
-#### Master instance
+* #### Master instance
 ***masteros:*** [Container-Optimized OS from Google](https://cloud.google.com/compute/docs/containers/vm-image/)
 
 Container-Optimized OS does not include a package manager; as such, you'll be unable install software packages on an instance.
@@ -8,7 +8,7 @@ Container-Optimized OS does not include a package manager; as such, you'll be un
 
 ***log file*** ```/var/log/kube-controller-manager.log```
 
-#### Node instances
+* #### Node instances
 
 ***nodes os:*** [Debian GNU](http://www.debian.org/)
 
