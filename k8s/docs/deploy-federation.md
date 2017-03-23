@@ -9,10 +9,10 @@ make build VERSION=latest ARCH=amd64
 docker tag gcr.io/google_containers/hyperkube-amd64 deshuai/hyperkube-amd64:latest
 ```
 * #### Deploy federation
-1. make sure enable cloud-provider
-2. make sure your account can create load balance svc
-3. create a route53 host zone
-4. use kubefed deploy federation env
+1. Setup k8s cluster or all-in-one env and enable cloud-provider
+2. Make sure your aws account can create load balance svc 
+3. Create a route53 host zone
+4. Use *kubefed* deploy federation env
 ```
 # kubefed init myfed --dns-provider=aws-route53 --dns-zone-name=federation.qe.com --etcd-persistent-storage=false --image=docker.io/deshuai/hyperkube-amd64:latest
 Federation API server is running at: a47c0139a0f9611e7a15f0e70ee9b7fa-524663631.us-east-1.elb.amazonaws.com
