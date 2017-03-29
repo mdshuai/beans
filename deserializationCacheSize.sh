@@ -17,5 +17,5 @@ do
   i=`expr $i + 1`
 done
 
-#watch openshift master info
+#In another terminal run the command & watch openshift master memory usage
 #ps auxw|head -1; for i in `seq 1 1 10000`;do ps auxw --no-header|grep "openshift start master"|head -1; sleep 10; done
