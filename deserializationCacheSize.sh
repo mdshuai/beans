@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#create 20 secret
+#create 20 secret, every secret about 51k
 oc delete project dma
 sleep 5
 oadm new-project dma
