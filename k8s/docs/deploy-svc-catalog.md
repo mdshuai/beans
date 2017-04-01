@@ -69,4 +69,4 @@ export REGISTRY="hub.docker.io/deshuai"
 export KUBECONFIG=/service-catalog/.kubeconfig
 EOF
 ```
-8. Now you can begin (walkthrough)[https://github.com/kubernetes-incubator/service-catalog/blob/master/docs/walkthrough.md#step-5---creating-a-broker-resource]
+8. Now you can begin [walkthrough](https://github.com/kubernetes-incubator/service-catalog/blob/master/docs/walkthrough.md#step-5---creating-a-broker-resource)
