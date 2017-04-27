@@ -1,5 +1,7 @@
 ### sample-apiserver
 
+Note: After [combine kube-apiserver and kube-aggregator](https://github.com/kubernetes/kubernetes/pull/42911), no need deploy kube-aggregator as a pod again. This will works in 1.7
+
 ```
 kubectl create ns wardle
 cd staging/src/k8s.io/sample-apiserver/
