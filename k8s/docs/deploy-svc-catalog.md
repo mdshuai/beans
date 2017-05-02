@@ -50,7 +50,7 @@ ups-broker-ups-broker-3359185601-0psrl   1/1       Running   0          16m
 
 6. Confirm svc-catalog deploy success and works well.
 ```
-APISERVER=`kubectl get svc --no-headers -n catalog | awk '{print $2}'`
+APISERVER=`kubectl get svc/catalog-catalog-apiserver -o template --template "{{.spec.clusterIP}}" -n catalog`
 kubectl config set-cluster service-catalog --server=http://${APISERVER}:80
 kubectl config set-context service-catalog --cluster=service-catalog
 alias kc='kubectl --context=service-catalog'
