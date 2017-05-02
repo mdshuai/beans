@@ -32,12 +32,11 @@ make push
 
 5. deploy svc-catalog & ups-broker in kubernetes cluster
 ```
-cd ..
 export APISERVER_IMAGE=docker.io/deshuai/apiserver:canary
 export CONTROLLER_IMAGE=docker.io/deshuai/controller-manager:canary
 export UPSBROKER_IMAGE=docker.io/deshuai/user-broker:canary
-helm install service-catalog/charts/catalog --name catalog --set apiserver.image=${APISERVER_IMAGE} --set controllerManager.image=${CONTROLLER_IMAGE} --namespace catalog
-helm install service-catalog/charts/ups-broker --name ups-broker --set image=${UPSBROKER_IMAGE} --namespace ups-broker
+helm install charts/catalog --name catalog --set apiserver.image=${APISERVER_IMAGE} --set controllerManager.image=${CONTROLLER_IMAGE} --namespace catalog
+helm install charts/ups-broker --name ups-broker --set image=${UPSBROKER_IMAGE} --namespace ups-broker
 
 [root@ip-172-18-13-114 kubernetes-incubator]# kubectl get pod -n catalog
 NAME                                                 READY     STATUS    RESTARTS   AGE
