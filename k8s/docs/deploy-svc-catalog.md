@@ -4,6 +4,7 @@
 ```
 KUBE_ENABLE_CLUSTER_DNS=true hack/local-up-cluster.sh -O
 ```
+Note: now we are not recommand enable rbac in k8s, as the know issue: [helm deploy will failed](https://github.com/kubernetes/helm/issues/2224)
 
 2. install glide
 ```
