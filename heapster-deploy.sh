@@ -7,14 +7,16 @@ go get -d k8s.io/heapster
 cd $GOPATH/src/k8s.io/heapster
 make
 
-cd $GOPATH/src/k8s.io/heapster/deploy/docker
-./build.sh
+#old build method
+#cd $GOPATH/src/k8s.io/heapster/deploy/docker
+#./build.sh
+#cd $GOPATH/src/k8s.io/heapster/influxdb
+#./build.sh
+#cd $GOPATH/src/k8s.io/heapster/grafana
+#make
 
-cd $GOPATH/src/k8s.io/heapster/influxdb
-./build.sh
-
-cd $GOPATH/src/k8s.io/heapster/grafana
-make
+#latest build method
+PREFIX=docker.io/deshuai make container grafana influxdb
 
 #After finish build image, re-tag
 docker tag heapster:canary docker.io/ocpqe/heapster:canary
