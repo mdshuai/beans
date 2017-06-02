@@ -62,3 +62,13 @@ you need add Network tag to your instance
 gcloud compute instances add-tags $instance --tags tag1,tag2
 gcloud compute instances remove-tags  $instance --tags tag1,tag2
 ```
+* For federation (using loadbalancer services and Google cloud
+dns), you will need to ensure that the instances are created with the
+following scopes (service account permissions)
+```
+- storage-ro
+- compute-rw
+- monitoring
+- logging-write
+- 'https://www.googleapis.com/auth/ndev.clouddns.readwrite'
+```
