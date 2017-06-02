@@ -55,13 +55,15 @@ Zone = us-east-1d
 [Global]
 Zone = us-east-1d
 ```
+
 * when create loadbalance svc, you met error `Failed to create load balancer for service default/hello-pod: No node tags supplied and also failed to parse the given lists of hosts for tags. Abort creating firewall rule.`
 you need add Network tag to your instance
 ```
-#best use instancename as your tag
+//Best use instancename as your tag
 gcloud compute instances add-tags $instance --tags tag1,tag2
 gcloud compute instances remove-tags  $instance --tags tag1,tag2
 ```
+
 * For federation (using loadbalancer services and Google cloud
 dns), you will need to ensure that the instances are created with the
 following scopes (service account permissions)
