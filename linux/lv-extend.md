@@ -1,3 +1,7 @@
+```
+parted /dev/sda
+```
+
 //扩展root分区，`/dev/sda1` 为空闲磁盘
 ```
 pvcreate /dev/sda1
