@@ -11,5 +11,6 @@ vgextend fedora_dhcp-140-57 /dev/sda3
 vgdisplay
 lvdisplay
 lvextend -L +500G /dev/fedora_dhcp-140-57/root
-resize2fs /dev/fedora_dhcp-140-57/root
+resize2fs /dev/fedora_dhcp-140-57/root   (ext4)
+xfs_growfs /dev/fedora_dhcp-140-57/root  (xff)
 ```
