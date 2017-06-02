@@ -44,3 +44,21 @@ Zone = us-east-1d
 # export AWS_ACCESS_KEY_ID=${key_id}
 # export AWS_SECRET_ACCESS_KEY=${access_key}
 ```
+
+## Configure gce cloud-provider for k8s
+* if you run all-in-one
+```
+# export CLOUD_PROVIDER=gce
+# export CLOUD_CONFIG=/etc/gce/gce.conf
+# export HOSTNAME_OVERRIDE=${instance_hostname} //eg: preserve-k8s-qe-dma.c.openshift-gce-devel.internal
+# cat /etc/gce/gce.conf
+[Global]
+Zone = us-east-1d
+```
+* when create loadbalance svc, you met error `Failed to create load balancer for service default/hello-pod: No node tags supplied and also failed to parse the given lists of hosts for tags. Abort creating firewall rule.`
+you need add Network tag to your instance
+```
+#best use instancename as your tag
+gcloud compute instances add-tags $instance --tags tag1,tag2
+gcloud compute instances remove-tags  $instance --tags tag1,tag2
+```
