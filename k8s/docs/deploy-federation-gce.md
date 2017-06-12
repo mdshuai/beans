@@ -54,27 +54,44 @@ myfed-controller-manager-2334921758-b88g6   1/1       Running   0          15m
 
 //host-context is where fedration pod located.
 ```
-export CLUSTER_CONTEXT=default/<cluster1-master>:8443/system:admin
-export HOST_CONTEXT=default/<cluster1-master>:8443/system:admin
-kubefed join cluster1 --cluster-context=${CLUSTER_CONTEXT} --host-cluster-context=${HOST_CONTEXT} --context=myfed
+# export CLUSTER1_CONTEXT=default/preserved-dma-cluster1-master-1-0609-k0d-qe-rhcloud-com:8443/system:admin
+# export CLUSTER2_CONTEXT=default/preserved-dma-cluster2-master-1-0609-sok-qe-rhcloud-com:8443/system:admin
+# export HOST_CONTEXT=${CLUSTER2_CONTEXT}
+# kubefed join cluster1 --cluster-context=${CLUSTER1_CONTEXT} --host-cluster-context=${HOST_CONTEXT} --context=myfed
+cluster "cluster1" created
+# kubefed join cluster2 --cluster-context=${CLUSTER2_CONTEXT} --host-cluster-context=${HOST_CONTEXT} --context=myfed
+cluster "cluster2" created
 ```
 
 ```/bin/bash
-[root@qe-dma-federation-preserve-master-1 ~]# oc get cluster --context=myfed
+[root@preserved-dma-cluster2-master-1 federation]# oc get cluster --context=myfed
 NAME       STATUS    AGE
-cluster1   Ready     14m
-[root@qe-dma-federation-preserve-master-1 ~]# oc describe cluster cluster1 --context=myfed
+cluster1   Ready     18s
+cluster2   Ready     16s
+[root@preserved-dma-cluster2-master-1 federation]# oc describe cluster cluster1 --context=myfed
 Name:	cluster1
 Labels:	<none>
 ServerAddressByClientCIDRs:
   ClientCIDR	ServerAddress
   ----		----
-  0.0.0.0/0 	https://<cluster1-master>:8443
+  0.0.0.0/0 	https://preserved-dma-cluster1-master-1.0609-k0d.qe.rhcloud.com:8443
 
 Conditions:
   Type		Status	LastUpdateTime				LastTransitionTime			Reason		Message
   ----		------	-----------------			------------------			------		-------
-  Ready 	True 	Thu, 08 Jun 2017 11:44:42 -0400 	Thu, 08 Jun 2017 11:34:02 -0400 	ClusterReady 	/healthz responded with ok
+  Ready 	True 	Mon, 12 Jun 2017 18:38:31 -0400 	Mon, 12 Jun 2017 18:37:51 -0400 	ClusterReady 	/healthz responded with ok
+[root@preserved-dma-cluster2-master-1 federation]# oc describe cluster cluster2 --context=myfed
+Name:	cluster2
+Labels:	<none>
+ServerAddressByClientCIDRs:
+  ClientCIDR	ServerAddress
+  ----		----
+  0.0.0.0/0 	https://preserved-dma-cluster2-master-1.0609-sok.qe.rhcloud.com:8443
+
+Conditions:
+  Type		Status	LastUpdateTime				LastTransitionTime			Reason		Message
+  ----		------	-----------------			------------------			------		-------
+  Ready 	True 	Mon, 12 Jun 2017 18:38:31 -0400 	Mon, 12 Jun 2017 18:37:51 -0400 	ClusterReady 	/healthz responded with ok
 ```
 
 ### 5. Run federation e2e
