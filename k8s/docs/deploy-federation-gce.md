@@ -77,21 +77,7 @@ Conditions:
   Ready 	True 	Thu, 08 Jun 2017 11:44:42 -0400 	Thu, 08 Jun 2017 11:34:02 -0400 	ClusterReady 	/healthz responded with ok
 ```
 
-### 5. Run federation e2e testing
-yum install atomic-openshift-tests
-
-## Debug issue
-1) etcdmain: cannot access data directory: mkdir /var/etcd/data: permission denied
-`oadm policy add-scc-to-user anyuid system:serviceaccount:federation-system:deployer -n federation-system`
-
-`oadm policy add-scc-to-user anyuid system:serviceaccount:federation-system:default -n federation-system`
-
-2) Cluster is Unknow after join, check controller-manager log: error in fetching secret: 
-User "system:serviceaccount:federation-system:federation-controller-manager" cannot get secrets in project "federation-system"
-
-solution: `oadm --namespace federation-system policy add-role-to-user admin system:serviceaccount:federation-system:federation-controller-manager`
-
-### 6. Run federation e2e
+### 5. Run federation e2e
 ```
 #options
 cd /root
@@ -102,5 +88,16 @@ export EXTENDED_TEST_PATH=/root/origin/test/extended
 ```
 ```
 #run federation extend test
+yum install atomic-openshift-tests
 extended.test --ginkgo.v --ginkgo.focus="Feature:Federation" -federated-kube-context=myfed
 ```
+### 6. Debug issue
+1) etcdmain: cannot access data directory: mkdir /var/etcd/data: permission denied
+`oadm policy add-scc-to-user anyuid system:serviceaccount:federation-system:deployer -n federation-system`
+
+`oadm policy add-scc-to-user anyuid system:serviceaccount:federation-system:default -n federation-system`
+
+2) Cluster is Unknow after join, check controller-manager log: error in fetching secret: 
+User "system:serviceaccount:federation-system:federation-controller-manager" cannot get secrets in project "federation-system"
+
+solution: `oadm --namespace federation-system policy add-role-to-user admin system:serviceaccount:federation-system:federation-controller-manager`
