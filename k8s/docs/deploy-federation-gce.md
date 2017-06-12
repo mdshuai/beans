@@ -6,8 +6,8 @@
 
 ### 2. Build federation image
 ```
-mkdir dma && cd dma
-cat <<EOF > Dockerfile 
+# mkdir dma && cd dma
+# cat <<EOF > Dockerfile 
 FROM <registry>/openshift3/ose-base
 Add hypercube /usr/bin/hyperkube
 Run ln -s /usr/bin/hyperkube /hyperkube
@@ -15,27 +15,25 @@ Run ln -s /usr/bin/hyperkube /hyperkube
 LABEL io.k8s.display-name="OpenShift Origin Federation" \
       io.k8s.description="This is a component of OpenShift Origin and contains the software for running federation servers."
 EOF
-yum install atomic-openshift-federation-services
-cp /usr/bin/hyperkube ./
-docker build -t docker.io/deshuai/ose-federation:v3.6.101 .
-docker tag docker.io/deshuai/ose-federation:v3.6.101 docker.io/deshuai/ose-federation:latest
-docker push docker.io/deshuai/ose-federation:v3.6.101
-docker push docker.io/deshuai/ose-federation:latest
+# yum install atomic-openshift-federation-services
+# cp /usr/bin/hyperkube ./
+# docker build -t docker.io/deshuai/ose-federation:v3.6.101 .
+# docker tag docker.io/deshuai/ose-federation:v3.6.101 docker.io/deshuai/ose-federation:latest
+# docker push docker.io/deshuai/ose-federation:v3.6.101
+# docker push docker.io/deshuai/ose-federation:latest
 ```
 
 ### 3. Deploy federation, when complete will create cluster/context in the local kubeconfig file named myfed.
 ```/bin/bash
-kubefed init myfed --dns-provider=google-clouddns --dns-zone-name=federation.ocpqe.com. --etcd-persistent-storage=false --image=docker.io/deshuai/ose-federation:latest
-oadm --namespace federation-system policy add-role-to-user admin system:serviceaccount:federation-system:default
-oadm --namespace federation-system policy add-role-to-user admin system:serviceaccount:federation-system:federation-controller-manager
-oadm policy add-scc-to-user anyuid system:serviceaccount:federation-system:deployer -n federation-system
-oadm policy add-scc-to-user anyuid system:serviceaccount:federation-system:default -n federation-system
-#oc patch deployment myfed-apiserver -n federation-system -p '{"spec": {"template": {"spec": {"securityContext": {"runAsUser": 0}}}}}'
+# kubefed init myfed --dns-provider=google-clouddns --dns-zone-name=federation.ocpqe.com. --etcd-persistent-storage=false --image=docker.io/deshuai/ose-federation:latest
+# oadm --namespace federation-system policy add-role-to-user admin system:serviceaccount:federation-system:default
+# oadm --namespace federation-system policy add-role-to-user admin system:serviceaccount:federation-system:federation-controller-manager
+# oadm policy add-scc-to-user anyuid system:serviceaccount:federation-system:deployer -n federation-system
+# oadm policy add-scc-to-user anyuid system:serviceaccount:federation-system:default -n federation-system
+# oc patch deployment myfed-apiserver -n federation-system -p '{"spec": {"template": {"spec": {"securityContext": {"runAsUser": 0}}}}}'
 ```
 
 ```/bin/bash
-[root@qe-dma36-master-1 federation]# kubefed init myfed --dns-provider=google-clouddns --dns-zone-name=federation.ocpqe.com. --etcd-persistent-storage=false --image=docker.io/deshuai/ose-federation:latest
-Federation API server is running at: xxx.xxx.xxx.xxx
 [root@qe-dma36-master-1 federation]# oc get svc -n federation-system
 NAME              CLUSTER-IP     EXTERNAL-IP       PORT(S)         AGE
 myfed-apiserver   172.30.156.5   xxx.xxx.xxx.xxx   443:31651/TCP   49m
@@ -47,6 +45,8 @@ myfed-controller-manager   1         1         1            1           48m
 NAME                                        READY     STATUS    RESTARTS   AGE
 myfed-apiserver-1603727799-f2mn6            2/2       Running   0          16m
 myfed-controller-manager-2334921758-b88g6   1/1       Running   0          15m
+[root@qe-dma36-master-1 federation]# kubefed init myfed --dns-provider=google-clouddns --dns-zone-name=federation.ocpqe.com. --etcd-persistent-storage=false --image=docker.io/deshuai/ose-federation:latest
+Federation API server is running at: xxx.xxx.xxx.xxx
 ```
 
 ### 4. Join cluster
@@ -96,17 +96,17 @@ Conditions:
 
 ### 5. Run federation e2e
 ```
-#options
-cd /root
-git clone --depth=1 https://github.com/openshift/origin
-export KUBECONFIG=/etc/origin/master/admin.kubeconfig
-export KUBE_REPO_ROOT=/root/origin/vendor/k8s.io/kubernetes
-export EXTENDED_TEST_PATH=/root/origin/test/extended
+//options
+# cd /roo
+# git clone --depth=1 https://github.com/openshift/origin
+# export KUBECONFIG=/etc/origin/master/admin.kubeconfig
+# export KUBE_REPO_ROOT=/root/origin/vendor/k8s.io/kubernetes
+# export EXTENDED_TEST_PATH=/root/origin/test/extended
 ```
 ```
-#run federation extend test
-yum install atomic-openshift-tests
-extended.test --ginkgo.v --ginkgo.focus="Feature:Federation" -federated-kube-context=myfed
+//run federation extend test
+# yum install atomic-openshift-tests
+# extended.test --ginkgo.v --ginkgo.focus="Feature:Federation" -federated-kube-context=myfed
 ```
 ### 6. Debug issue
 1) etcdmain: cannot access data directory: mkdir /var/etcd/data: permission denied
