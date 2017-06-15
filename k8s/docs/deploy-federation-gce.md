@@ -106,7 +106,7 @@ Conditions:
 ```
 //run federation extend test
 # yum install atomic-openshift-tests
-# extended.test --ginkgo.v --ginkgo.focus="Feature:Federation" -federated-kube-context=myfed
+# extended.test --ginkgo.v --ginkgo.focus="Feature:Federation" --federation-config-from-cluster=true --federated-kube-context=myfed
 ```
 ### 6. Debug issue
 1) etcdmain: cannot access data directory: mkdir /var/etcd/data: permission denied
