@@ -1,3 +1,5 @@
+## Deploy federation on OpenShift
+
 ### 1. Prepare: gce instance
 1) need update NetworkTags, otherwise it will failed to create lb svc
 2) after update instance 'Network tags', you need create related 'Firewall rules'
@@ -5,6 +7,7 @@
 4) need use staic ip for gce instance(Optional)
 
 ### 2. Build federation image
+(NOTE: When image ready on private reigstry, we don't need this)
 ```
 # mkdir dma && cd dma
 # cat <<EOF > Dockerfile 
