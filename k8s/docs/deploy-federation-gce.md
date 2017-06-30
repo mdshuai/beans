@@ -2,7 +2,7 @@
 1) need update NetworkTags, otherwise it will failed to create lb svc
 2) after update instance 'Network tags', you need create related 'Firewall rules'
 3) you need use the serviceaccount 'aos-serviceaccount'
-4) need use staic ip for gce instance
+4) need use staic ip for gce instance(Optional)
 
 ### 2. Build federation image
 ```
