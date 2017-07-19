@@ -1,28 +1,4 @@
 ```
-openshift_additional_repos: "[{'id': 'aos36-devel-install', 'name': 'aos36-devel-install', 'baseurl': 'http://download-node-02.eng.bos.redhat.com/rcm-guest/puddles/RHAOS/AtomicOpenShift/3.6/2017-07-16.2/x86_64/os/', 'enabled': 1, 'gpgcheck': 0}]"
-qe_additional_repos: "[{'id': 'rhel7', 'name': 'rhel7', 'baseurl': 'http://download.eng.bos.redhat.com/rel-eng/RHEL-7.4-20170630.1/compose/Server/x86_64/os/', 'enabled': 1, 'gpgcheck': 0},{'id': 'rhel7-extra', 'name': 'rhel7-extra', 'baseurl': 'http://download-node-02.eng.bos.redhat.com/nightly/EXTRAS-RHEL-7.4/EXTRAS-7.4-RHEL-7-20170628.n.0/compose/Server/x86_64/os', 'enabled': 1, 'gpgcheck': 0},{'id': 'fast-datapath', 'name': 'fast-datapath', 'baseurl': 'http://pulp.dist.prod.ext.phx2.redhat.com/content/dist/rhel/server/7/7Server/x86_64/fast-datapath/os', 'enabled': 1, 'gpgcheck': 0}]"
-os_sdn_network_plugin_name: redhat/openshift-ovs-multitenant
-image: qe-rhel-74-20170630
-openshift_playbook_rpm_repos: "[{'id': 'aos36-devel-install', 'name': 'aos36-devel-install', 'baseurl': 'http://download-node-02.eng.bos.redhat.com/rcm-guest/puddles/RHAOS/AtomicOpenShift/3.6/2017-07-16.2/x86_64/os/', 'enabled': 1, 'gpgcheck': 0}]"
-openshift_ansible_vars:
-  openshift_disable_check: disk_availability,memory_availability,package_availability,docker_image_availability,docker_storage,package_version
-  openshift_enable_service_catalog: true
-  openshift_service_catalog_image_prefix: brew-pulp-docker01.web.prod.ext.phx2.redhat.com:8888/openshift3/ose-
-  openshift_service_catalog_image_version: latest
-  ansible_service_broker_image_prefix: brew-pulp-docker01.web.prod.ext.phx2.redhat.com:8888/openshift3/
-  ansible_service_broker_image_tag: latest
-  ansible_service_broker_etcd_image_prefix: quay.io/coreos/
-  ansible_service_broker_etcd_image_tag: latest
-  ansible_service_broker_etcd_image_etcd_path: /usr/local/bin/etcd
-  ansible_service_broker_registry_type: rhcc
-  ansible_service_broker_registry_url: registry.access.stage.redhat.com
-  ansible_service_broker_registry_organization: openshift3
-  ansible_service_broker_registry_user: ""
-  ansible_service_broker_registry_password: ""
-
-
-
-
 1. create storageclass then redeploy asb service.
 oc create -f https://raw.githubusercontent.com/mdshuai/testfile-openshift/master/storageclass/cinder-default.json
 oc create -f https://raw.githubusercontent.com/mdshuai/testfile-openshift/master/storageclass/pvc-cinder.json -n openshift-ansible-service-broker
