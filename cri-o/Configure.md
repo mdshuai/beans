@@ -5,7 +5,7 @@ cd runc
 make && make install
 ```
 
-#### Build & Install crio
+### Build & Install crio
 ```
 git clone https://github.com/kubernetes-incubator/cri-o.git
 cd cri-o
@@ -21,7 +21,7 @@ mkdir /etc/containers
 cp -p test/policy.json /etc/containers/policy.json
 ```
 
-##### Configure cni
+### Configure cni
 ```
 go get -d github.com/containernetworking/plugins
 cd $GOPATH/src/github.com/containernetworking/plugins
