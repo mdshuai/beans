@@ -1,3 +1,11 @@
+
+### Get node stats from apiserver api
+```
+curl -k http://localhost:4194/api/v2.1/storage | python -m json.tool
+curl -k https://localhost:10250/stats/summary (The value node.memory.availableBytes which is what drives eviction.)
+kubectl/oc get --raw /api/v1/nodes/${nodename}/proxy/stats/summary
+```
+
 ### Get metrics from haepster in OpenShift
 * Get metrics from [apis/metrics](https://github.com/kubernetes/heapster/blob/master/metrics/apis/metrics/handlers.go#L54-L92)
 
@@ -90,11 +98,4 @@ curl -k -H "Authorization: Bearer $token" -X GET https://qe-dma1-master-1.0210-t
 curl -k -H "Authorization: Bearer $token" -X GET https://qe-dma1-master-1.0210-tte.qe.rhcloud.com:8443/api/v1/proxy/namespaces/openshift-infra/services/https:heapster:/api/v1/model/namespaces/dma1/pods/resource-consumer-1-3b8dw/metrics/
 //Get cpu metrics
 curl -k -H "Authorization: Bearer $token" -X GET  https://qe-dma1-master-1.0210-tte.qe.rhcloud.com:8443/api/v1/proxy/namespaces/openshift-infra/services/https:heapster:/api/v1/model/namespaces/dma1/pods/resource-consumer-1-3b8dw/metrics/cpu/usage_rate
-```
-
-#### Get node stats from apiserver api
-```
-curl -k http://localhost:4194/api/v2.1/storage | python -m json.tool
-curl -k https://localhost:10250/stats/summary (The value node.memory.availableBytes which is what drives eviction.)
-kubectl/oc get --raw /api/v1/nodes/${nodename}/proxy/stats/summary
 ```
