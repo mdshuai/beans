@@ -1,4 +1,4 @@
-###Get metrics from haepster in OpenShift
+### Get metrics from haepster in OpenShift
 * Get metrics from [apis/metrics](https://github.com/kubernetes/heapster/blob/master/metrics/apis/metrics/handlers.go#L54-L92)
 
 #### /apis/metrics/v1alpha1/namespaces/{ns}/pods/?labelSelector="{label}"
@@ -94,5 +94,7 @@ curl -k -H "Authorization: Bearer $token" -X GET  https://qe-dma1-master-1.0210-
 
 #### Get node stats from apiserver api
 ```
-oc get --raw api/v1/nodes/<nodename>/proxy/stats/summary
+curl -k http://localhost:4194/api/v2.1/storage | python -m json.tool
+curl -k https://localhost:10250/stats/summary (The value node.memory.availableBytes which is what drives eviction.)
+kubectl/oc get --raw /api/v1/nodes/${nodename}/proxy/stats/summary
 ```
