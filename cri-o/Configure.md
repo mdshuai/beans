@@ -78,3 +78,6 @@ crictl ps
 ### Issue to debug
 1. Clean data, 
 If you want clean all the container left by last time, you can just delete "storage_root" `/var/lib/containers/storage`
+
+2. Error `Creating the pod sandbox failed: rpc error: code = 2 desc = container create failed: No help topic for 'create'`  
+   solution: `your runc version is too old`
