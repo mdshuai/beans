@@ -75,3 +75,6 @@ export CRI_RUNTIME_ENDPOINT=/var/run/crio.sock
 export CRI_IMAGE_ENDPOINT=/var/run/crio.sock
 crictl ps
 ```
+### Issue to debug
+1. Clean data, 
+If you want clean all the container left by last time, you can just delete "storage_root" `/var/lib/containers/storage`
