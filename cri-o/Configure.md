@@ -68,3 +68,10 @@ CONTAINER_RUNTIME=remote \
 CONTAINER_RUNTIME_ENDPOINT='/var/run/crio.sock  --runtime-request-timeout=15m' \
 ./hack/local-up-cluster.sh
 ```
+
+### Use [crictl](https://github.com/kubernetes-incubator/cri-tools/tree/master/cmd/crictl) as client command for cri-o
+```
+export CRI_RUNTIME_ENDPOINT=/var/run/crio.sock
+export CRI_IMAGE_ENDPOINT=/var/run/crio.sock
+crictl ps
+```
