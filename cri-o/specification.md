@@ -27,7 +27,7 @@ https://github.com/kubernetes/kubernetes/pull/26788
 [cri-o.io](http://cri-o.io/)
 
 The architectural components are as follows:
-
+```
     Kubernetes contacts the kubelet to launch a pod.
         Pods are a kubernetes concept consisting of one or more containers sharing the same IPC, NET and PID namespaces and living in the same cgroup.
     The kublet forwards the request to the CRI-O daemon VIA kubernetes CRI (Container runtime interface) to launch the new POD.
@@ -37,3 +37,4 @@ The architectural components are as follows:
     CRI-O then launches an OCI Compatible Runtime using the specification to run the container proceses. The default OCI Runtime is runc.
     Each container is monitored by a separate conmon process. The conmon process holds the pty of the PID1 of the container process. It handles logging for the container and records the exit code for the container process.
     Networking for the pod is setup through use of CNI, so any CNI plugin can be used with CRI-O.
+```
