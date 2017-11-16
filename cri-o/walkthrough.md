@@ -75,6 +75,28 @@ export CRI_RUNTIME_ENDPOINT=/var/run/crio.sock
 export CRI_IMAGE_ENDPOINT=/var/run/crio.sock
 crictl ps
 ```
+
+### Example create sandbox and container with crictl
+```
+[root@dma cri-o]# crictl runs test/testdata/sandbox_config.json 
+0208745f429459eb7fceddbd24d74b69a17d8499be1a745b9b3088cd6513906c
+[root@dma cri-o]# crictl sandboxes
+SANDBOX ID          CREATED             STATE               NAME                NAMESPACE           ATTEMPT
+0208745f42945       8 seconds ago       SANDBOX_READY       podsandbox1         redhat.test.crio    1
+[root@dma cri-o]# crictl create 0208745f42945 test/testdata/container_redis.json test/testdata/sandbox_config.json 
+865bb587046336faab843bb22b73674993f7c284e243184a84fbb71b60f4be29
+[root@dma cri-o]# crictl ps
+CONTAINER ID        IMAGE               CREATED             STATE               NAME                ATTEMPT
+865bb58704633       redis:alpine        3 seconds ago       CONTAINER_CREATED   podsandbox1-redis   0
+[root@dma cri-o]# crictl start 865bb58704633
+865bb58704633
+[root@dma cri-o]# crictl ps
+CONTAINER ID        IMAGE               CREATED             STATE               NAME                ATTEMPT
+865bb58704633       redis:alpine        17 seconds ago      CONTAINER_RUNNING   podsandbox1-redis   0
+
+```
+
+
 ### Issue to debug
 1. Clean data, 
 If you want clean all the container left by last time, you can just delete "storage_root" `/var/lib/containers/storage`
