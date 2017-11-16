@@ -16,3 +16,8 @@ https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/v1alph
 https://github.com/opencontainers/runtime-spec/blob/master/config.md#platform-specific-configuration
 
 `config definition` : https://github.com/opencontainers/runtime-spec/blob/master/specs-go/config.go
+
+
+### Proposal: Kubelet OCI runtime integration (cri-o)
+
+https://github.com/kubernetes/kubernetes/pull/26788
