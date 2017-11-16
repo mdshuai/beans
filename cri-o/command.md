@@ -1,113 +1,4 @@
 ### Command
-#### atomic
-```
-[root@host-8-241-39 ~]# atomic --help
-usage: atomic [-h] [-v] [--debug] [-i] [-y]
-              
-              {containers,diff,help,images,host,info,install,mount,pull,push,upload,run,scan,sign,stop,storage,migrate,top,trust,uninstall,unmount,umount,update,verify,version}
-              ...
-
-Atomic Management Tool
-
-positional arguments:
-  {containers,diff,help,images,host,info,install,mount,pull,push,upload,run,scan,sign,stop,storage,migrate,top,trust,uninstall,unmount,umount,update,verify,version}
-                        commands
-    containers          operate on containers
-    diff                Show differences between two container images, file
-                        diff or RPMS.
-    images              operate on images
-    host                execute Atomic host commands
-    install             execute container image install method
-    mount               mount container image to a specified directory
-    pull                pull latest image from a repository
-    push (upload)       push latest image to repository
-    run                 execute container image run method
-    scan                scan an image or container for CVEs
-    sign                Sign an image
-    stop                execute container image stop method
-    storage (migrate)   manage container storage
-    top                 Show top-like stats about processes running in
-                        containers
-    trust               Manage system container trust policy
-    uninstall           execute container image uninstall method
-    unmount (umount)    unmount container image
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -v, --version         show atomic version and exit
-  --debug               show debug messages
-  -i, --ignore          ignore install-first requirement
-  -y, --assumeyes       automatically answer yes for all questions
-
-```
-
-#### runc
-```
-[root@host-8-241-39 ~]# runc --help
-NAME:
-   runc - Open Container Initiative runtime
-
-runc is a command line client for running applications packaged according to
-the Open Container Initiative (OCI) format and is a compliant implementation of the
-Open Container Initiative specification.
-
-runc integrates well with existing process supervisors to provide a production
-container runtime environment for applications. It can be used with your
-existing process monitoring tools and the container will be spawned as a
-direct child of the process supervisor.
-
-Containers are configured using bundles. A bundle for a container is a directory
-that includes a specification file named "config.json" and a root filesystem.
-The root filesystem contains the contents of the container.
-
-To start a new instance of a container:
-
-    # runc run [ -b bundle ] <container-id>
-
-Where "<container-id>" is your name for the instance of the container that you
-are starting. The name you provide for the container instance must be unique on
-your host. Providing the bundle directory using "-b" is optional. The default
-value for "bundle" is the current directory.
-
-USAGE:
-   runc [global options] command [command options] [arguments...]
-   
-VERSION:
-   1.0.0-rc3
-commit: 116f84106c7b571482a0a71ce7f857e134631619-dirty
-spec: 1.0.0-rc5
-   
-COMMANDS:
-     checkpoint  checkpoint a running container
-     create      create a container
-     delete      delete any resources held by the container often used with detached container
-     events      display container events such as OOM notifications, cpu, memory, and IO usage statistics
-     exec        execute new process inside the container
-     init        initialize the namespaces and launch the process (do not call it outside of runc)
-     kill        kill sends the specified signal (default: SIGTERM) to the container's init process
-     list        lists containers started by runc with the given root
-     pause       pause suspends all processes inside the container
-     ps          ps displays the processes running inside a container
-     restore     restore a container from a previous checkpoint
-     resume      resumes all processes that have been previously paused
-     run         create and run a container
-     spec        create a new specification file
-     start       executes the user defined process in a created container
-     state       output the state of a container
-     update      update container resource constraints
-     help, h     Shows a list of commands or help for one command
-
-GLOBAL OPTIONS:
-   --debug             enable debug output for logging
-   --log value         set the log file path where internal debug information is written (default: "/dev/null")
-   --log-format value  set the format used by logs ('text' (default), or 'json') (default: "text")
-   --root value        root directory for storage of container state (this should be located in tmpfs) (default: "/run/runc-ctrs")
-   --criu value        path to the criu binary used for checkpoint and restore (default: "criu")
-   --systemd-cgroup    enable systemd cgroup support, expects cgroupsPath to be of form "slice:prefix:name" for e.g. "system.slice:runc:434234"
-   --help, -h          show help
-   --version, -v       print the version
-```
-
 #### crio
 ```
 [root@dma cri-o]# ./crio --help
@@ -187,7 +78,7 @@ GLOBAL OPTIONS:
    --version, -v    print the version
 ```
 
-#### kpod
+#### [kpod](https://github.com/projectatomic/libpod)
 ```
 [root@dma cri-o]# ./kpod -h
 NAME:
@@ -233,4 +124,114 @@ GLOBAL OPTIONS:
    --storage-opt value               used to pass an option to the storage driver
    --help, -h                        show help
    --version, -v                     print the version
+```
+
+
+#### runc
+```
+[root@host-8-241-39 ~]# runc --help
+NAME:
+   runc - Open Container Initiative runtime
+
+runc is a command line client for running applications packaged according to
+the Open Container Initiative (OCI) format and is a compliant implementation of the
+Open Container Initiative specification.
+
+runc integrates well with existing process supervisors to provide a production
+container runtime environment for applications. It can be used with your
+existing process monitoring tools and the container will be spawned as a
+direct child of the process supervisor.
+
+Containers are configured using bundles. A bundle for a container is a directory
+that includes a specification file named "config.json" and a root filesystem.
+The root filesystem contains the contents of the container.
+
+To start a new instance of a container:
+
+    # runc run [ -b bundle ] <container-id>
+
+Where "<container-id>" is your name for the instance of the container that you
+are starting. The name you provide for the container instance must be unique on
+your host. Providing the bundle directory using "-b" is optional. The default
+value for "bundle" is the current directory.
+
+USAGE:
+   runc [global options] command [command options] [arguments...]
+   
+VERSION:
+   1.0.0-rc3
+commit: 116f84106c7b571482a0a71ce7f857e134631619-dirty
+spec: 1.0.0-rc5
+   
+COMMANDS:
+     checkpoint  checkpoint a running container
+     create      create a container
+     delete      delete any resources held by the container often used with detached container
+     events      display container events such as OOM notifications, cpu, memory, and IO usage statistics
+     exec        execute new process inside the container
+     init        initialize the namespaces and launch the process (do not call it outside of runc)
+     kill        kill sends the specified signal (default: SIGTERM) to the container's init process
+     list        lists containers started by runc with the given root
+     pause       pause suspends all processes inside the container
+     ps          ps displays the processes running inside a container
+     restore     restore a container from a previous checkpoint
+     resume      resumes all processes that have been previously paused
+     run         create and run a container
+     spec        create a new specification file
+     start       executes the user defined process in a created container
+     state       output the state of a container
+     update      update container resource constraints
+     help, h     Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --debug             enable debug output for logging
+   --log value         set the log file path where internal debug information is written (default: "/dev/null")
+   --log-format value  set the format used by logs ('text' (default), or 'json') (default: "text")
+   --root value        root directory for storage of container state (this should be located in tmpfs) (default: "/run/runc-ctrs")
+   --criu value        path to the criu binary used for checkpoint and restore (default: "criu")
+   --systemd-cgroup    enable systemd cgroup support, expects cgroupsPath to be of form "slice:prefix:name" for e.g. "system.slice:runc:434234"
+   --help, -h          show help
+   --version, -v       print the version
+```
+
+#### atomic
+```
+[root@host-8-241-39 ~]# atomic --help
+usage: atomic [-h] [-v] [--debug] [-i] [-y]
+              
+              {containers,diff,help,images,host,info,install,mount,pull,push,upload,run,scan,sign,stop,storage,migrate,top,trust,uninstall,unmount,umount,update,verify,version}
+              ...
+
+Atomic Management Tool
+
+positional arguments:
+  {containers,diff,help,images,host,info,install,mount,pull,push,upload,run,scan,sign,stop,storage,migrate,top,trust,uninstall,unmount,umount,update,verify,version}
+                        commands
+    containers          operate on containers
+    diff                Show differences between two container images, file
+                        diff or RPMS.
+    images              operate on images
+    host                execute Atomic host commands
+    install             execute container image install method
+    mount               mount container image to a specified directory
+    pull                pull latest image from a repository
+    push (upload)       push latest image to repository
+    run                 execute container image run method
+    scan                scan an image or container for CVEs
+    sign                Sign an image
+    stop                execute container image stop method
+    storage (migrate)   manage container storage
+    top                 Show top-like stats about processes running in
+                        containers
+    trust               Manage system container trust policy
+    uninstall           execute container image uninstall method
+    unmount (umount)    unmount container image
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         show atomic version and exit
+  --debug               show debug messages
+  -i, --ignore          ignore install-first requirement
+  -y, --assumeyes       automatically answer yes for all questions
+
 ```
