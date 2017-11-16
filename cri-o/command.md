@@ -161,7 +161,7 @@ GLOBAL OPTIONS:
    --version, -v              print the version
 ```
 
-#### crioctl
+#### crioctl  -> replaced by [crictl](https://github.com/kubernetes-incubator/cri-tools/blob/master/docs/crictl.md)
 ```
 [root@dma cri-o]# ./crioctl -h
 NAME:
