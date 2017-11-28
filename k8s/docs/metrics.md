@@ -25,3 +25,8 @@ https://github.com/kubernetes/community/blob/master/contributors/design-proposal
 https://github.com/kubernetes/community/blob/master/contributors/design-proposals/instrumentation/resource-metrics-api.md
 https://github.com/kubernetes/community/blob/master/contributors/design-proposals/instrumentation/metrics-server.md
 ```
+
+
+//custom metrics example
+
+https://github.com/kubeless/kubeless/tree/master/manifests/autoscaling
