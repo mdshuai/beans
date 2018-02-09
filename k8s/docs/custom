@@ -1,0 +1,123 @@
+(Relationship to HPA v2)[https://github.com/kubernetes/community/blob/master/contributors/design-proposals/instrumentation/custom-metrics-api.md]
+pods source type corresponds to a URL of the form /namespaces/$NS/pods/*/$METRIC_NAME?labelSelector=foo
+object source type corresponds to a URL of the form /namespaces/$NS/$RESOURCE.$GROUP/$OBJECT_NAME/$METRIC_NAME
+
+```
+[root@qe-dma-master-etcd-1 hpa-v2beta1]# oc get --raw /apis/custom.metrics.k8s.io/v1beta1 | python -m json.tool |grep -w name
+            "name": "jobs.batch/kubelet_volume_stats_inodes",
+            "name": "roles.authorization.openshift.io/kubelet_volume_stats_inodes",
+            "name": "pods/fs_limit_bytes",
+            "name": "pods/fs_reads",
+            "name": "roles.authorization.openshift.io/kubelet_volume_stats_available_bytes",
+            "name": "namespaces/kubelet_volume_stats_available_bytes",
+            "name": "roles.authorization.openshift.io/kubelet_volume_stats_capacity_bytes",
+            "name": "pods/cpu_load_average_10s",
+            "name": "pods/fs_writes",
+            "name": "pods/memory_max_usage_bytes",
+            "name": "pods/start_time_seconds",
+            "name": "jobs.batch/kubelet_volume_stats_inodes_free",
+            "name": "pods/cpu_cfs_throttled",
+            "name": "pods/cpu_usage",
+            "name": "pods/fs_inodes",
+            "name": "jobs.batch/kubelet_volume_stats_inodes_used",
+            "name": "persistentvolumeclaims/kubelet_volume_stats_inodes_used",
+            "name": "namespaces/kubelet_volume_stats_inodes_used",
+            "name": "pods/fs_inodes_free",
+            "name": "namespaces/kubelet_volume_stats_inodes",
+            "name": "namespaces/kubelet_volume_stats_inodes_free",
+            "name": "pods/cpu_system",
+            "name": "pods/fs_usage_bytes",
+            "name": "persistentvolumeclaims/kubelet_volume_stats_available_bytes",
+            "name": "jobs.batch/kubelet_volume_stats_used_bytes",
+            "name": "persistentvolumeclaims/kubelet_volume_stats_used_bytes",
+            "name": "roles.authorization.openshift.io/kubelet_volume_stats_used_bytes",
+            "name": "pods/cpu_cfs_throttled_periods",
+            "name": "pods/cpu_usage_rate",
+            "name": "pods/memory_rss",
+            "name": "jobs.batch/kubelet_volume_stats_available_bytes",
+            "name": "persistentvolumeclaims/kubelet_volume_stats_inodes_free",
+            "name": "roles.authorization.openshift.io/kubelet_volume_stats_inodes_used",
+            "name": "roles.authorization.openshift.io/kubelet_volume_stats_inodes_free",
+            "name": "namespaces/kubelet_volume_stats_used_bytes",
+            "name": "pods/network_tcp_usage",
+            "name": "pods/network_udp_usage",
+            "name": "namespaces/kubelet_volume_stats_capacity_bytes",
+            "name": "jobs.batch/kubelet_volume_stats_capacity_bytes",
+            "name": "persistentvolumeclaims/kubelet_volume_stats_capacity_bytes",
+            "name": "persistentvolumeclaims/kubelet_volume_stats_inodes",
+[root@qe-dma-master-etcd-1 hpa-v2beta1]# oc get --raw /apis/custom.metrics.k8s.io/v1beta1 | python -m json.tool |grep pods
+            "name": "pods/fs_limit_bytes",
+            "name": "pods/fs_reads",
+            "name": "pods/cpu_load_average_10s",
+            "name": "pods/fs_writes",
+            "name": "pods/memory_max_usage_bytes",
+            "name": "pods/start_time_seconds",
+            "name": "pods/cpu_cfs_throttled",
+            "name": "pods/cpu_usage",
+            "name": "pods/fs_inodes",
+            "name": "pods/fs_inodes_free",
+            "name": "pods/cpu_system",
+            "name": "pods/fs_usage_bytes",
+            "name": "pods/cpu_cfs_throttled_periods",
+            "name": "pods/cpu_usage_rate",
+            "name": "pods/memory_rss",
+            "name": "pods/network_tcp_usage",
+            "name": "pods/network_udp_usage",
+[root@qe-dma-master-etcd-1 hpa-v2beta1]# oc get po -n dma --show-labels
+NAME                    READY     STATUS    RESTARTS   AGE       LABELS
+hello-daemonset-2nwwp   1/1       Running   0          1h        controller-revision-hash=1676762936,name=hello-daemonset,pod-template-generation=1
+hello-daemonset-l2224   1/1       Running   0          1h        controller-revision-hash=1676762936,name=hello-daemonset,pod-template-generation=1
+[root@qe-dma-master-etcd-1 hpa-v2beta1]# 
+[root@qe-dma-master-etcd-1 hpa-v2beta1]# oc get --raw /apis/custom.metrics.k8s.io/v1beta1/namespaces/dma/pod/hello-daemonset-2nwwp/memory_max_usage_bytes | python -m json.tool
+{
+    "apiVersion": "custom.metrics.k8s.io/v1beta1",
+    "items": [
+        {
+            "describedObject": {
+                "apiVersion": "/__internal",
+                "kind": "Pod",
+                "name": "hello-daemonset-2nwwp"
+            },
+            "metricName": "memory_max_usage_bytes",
+            "timestamp": "2018-02-09T09:40:46Z",
+            "value": "4964352"
+        }
+    ],
+    "kind": "MetricValueList",
+    "metadata": {
+        "selfLink": "/apis/custom.metrics.k8s.io/v1beta1/namespaces/dma/pod/hello-daemonset-2nwwp/memory_max_usage_bytes"
+    }
+}
+[root@qe-dma-master-etcd-1 hpa-v2beta1]# oc get --raw /apis/custom.metrics.k8s.io/v1beta1/namespaces/dma/pods/*/memory_max_usage_bytes?labelSelector=name%3Dhello-daemonset | python -m json.tool
+{
+    "apiVersion": "custom.metrics.k8s.io/v1beta1",
+    "items": [
+        {
+            "describedObject": {
+                "apiVersion": "/__internal",
+                "kind": "Pod",
+                "name": "hello-daemonset-2nwwp",
+                "namespace": "dma"
+            },
+            "metricName": "memory_max_usage_bytes",
+            "timestamp": "2018-02-09T09:40:57Z",
+            "value": "4964352"
+        },
+        {
+            "describedObject": {
+                "apiVersion": "/__internal",
+                "kind": "Pod",
+                "name": "hello-daemonset-l2224",
+                "namespace": "dma"
+            },
+            "metricName": "memory_max_usage_bytes",
+            "timestamp": "2018-02-09T09:40:57Z",
+            "value": "7237632"
+        }
+    ],
+    "kind": "MetricValueList",
+    "metadata": {
+        "selfLink": "/apis/custom.metrics.k8s.io/v1beta1/namespaces/dma/pods/%2A/memory_max_usage_bytes"
+    }
+}
+```
